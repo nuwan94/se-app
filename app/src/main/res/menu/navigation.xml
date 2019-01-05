@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_feed"
+        android:icon="@mipmap/outline_rss_feed_white_48"
+        android:title="@string/feed" />
+
+    <item
+        android:id="@+id/navigation_people"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/friends" />
+
+    <item
+        android:id="@+id/navigation_leaderboard"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/leaderboard" />
+
+</menu>

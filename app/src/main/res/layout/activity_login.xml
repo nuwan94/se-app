@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.nuwan.seofficial.UI.LoginActivity">
+
+    <ImageView
+        android:id="@+id/splash_logo_top"
+        android:layout_width="155dp"
+        android:layout_height="146dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:src="@mipmap/se_logo" />
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/loginView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="52dp"
+        android:orientation="vertical"
+        android:padding="10sp">
+
+        <EditText
+            android:id="@+id/splash_txtUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Username"
+            android:inputType="number" />
+
+
+        <EditText
+            android:id="@+id/splash_txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Password"
+            android:inputType="numberPassword" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/splash_btnlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:text="Login"
+            android:textColor="@android:color/white"
+            app:cornerRadius="5dp"
+            app:fButtonColor="@color/cardview_dark_background"
+            app:shadowColor="@color/colorAccent"
+            app:shadowEnabled="true"
+            app:shadowHeight="4dp" />
+
+        <TextView
+            android:id="@+id/txtWelcomeFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:text="@string/splash_footer_text"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SE Official</string>
+    <string name="splash_footer_text">Official Android Application for undergraduate of UOK Software Engineering 15/16 batch. 2018 Copyrighted. All Rights Reserved.</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="leaderboard">Leaderboards</string>
+    <string name="friends">Friends</string>
+    <string name="feed">Feed</string>
+    <string name="gpa">GPA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_select_location">Map</string>
+
+</resources>
