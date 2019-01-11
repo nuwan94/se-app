@@ -2,67 +2,98 @@ package me.nuwan.seofficial.Model;
 
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class Person implements Comparable {
 
-    private String peopleSNO;
-    private String peopleName;
-    private String peopleMobileNumber;
-    private String peopleDOB;
-    private String peopleImage;
+    private String sno;
+    private String name;
+    private String mob;
+    private String dob;
+    private String img;
+    private String lat,lang;
+    private String gpa;
+
+    public Person(String sno, String name, String mob, String dob, String img, String lat, String lang, String gpa) {
+        this.sno = sno;
+        this.name = name;
+        this.mob = mob;
+        this.dob = dob;
+        this.img = img;
+        this.lat = lat;
+        this.lang = lang;
+        this.gpa = gpa;
+    }
 
     public Person() {
     }
 
-    public Person(String peopleSNO, String peopleName, String peopleMobileNumber, String peopleDOB, String peopleImage) {
-        this.peopleSNO = peopleSNO;
-        this.peopleName = peopleName;
-        this.peopleMobileNumber = peopleMobileNumber;
-        this.peopleDOB = peopleDOB;
-        this.peopleImage = peopleImage;
+    public String getSno() {
+        return sno;
     }
 
-    public String getPeopleSNO() {
-        return peopleSNO;
+    public void setSno(String sno) {
+        this.sno = sno;
     }
 
-    public void setPeopleSNO(String peopleSNO) {
-        this.peopleSNO = peopleSNO;
+    public String getName() {
+        return name;
     }
 
-    public String getPeopleName() {
-        return peopleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPeopleName(String peopleName) {
-        this.peopleName = peopleName;
+    public String getMob() {
+        return mob;
     }
 
-    public String getPeopleMobileNumber() {
-        return peopleMobileNumber;
+    public void setMob(String mob) {
+        this.mob = mob;
     }
 
-    public void setPeopleMobileNumber(String peopleMobileNumber) {
-        this.peopleMobileNumber = peopleMobileNumber;
+    public String getDob() {
+        return dob;
     }
 
-    public String getPeopleDOB() {
-        return peopleDOB;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
-    public void setPeopleDOB(String peopleDOB) {
-        this.peopleDOB = peopleDOB;
+    public String getImg() {
+        return img;
     }
 
-    public String getPeopleImage() {
-        return peopleImage;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public void setPeopleImage(String peopleImage) {
-        this.peopleImage = peopleImage;
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(String gpa) {
+        this.gpa = gpa;
     }
 
     @Override
     public int compareTo(@NonNull Object o) {
-        return Integer.parseInt(this.peopleSNO) - Integer.parseInt(((Person)o).getPeopleSNO());
+        return Integer.parseInt(this.sno) - Integer.parseInt(((Person)o).getSno());
     }
 }

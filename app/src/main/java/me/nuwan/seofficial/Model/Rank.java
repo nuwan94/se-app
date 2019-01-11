@@ -11,7 +11,6 @@ public class Rank implements Comparable {
     }
 
     public Rank(String name, String score) {
-
         this.name = name;
         this.score = score;
     }

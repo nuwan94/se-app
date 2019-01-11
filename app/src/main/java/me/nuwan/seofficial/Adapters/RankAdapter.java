@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import me.nuwan.seofficial.R;
 import me.nuwan.seofficial.Model.Rank;
@@ -34,9 +37,10 @@ public class RankAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         MyHolder myHolder= (MyHolder) holder;
         Rank current = data.get(position);
 
+        myHolder.number.setText(String.format(Locale.ENGLISH,"%d", position + 1));
         myHolder.name.setText(current.getName());
-        myHolder.score.setText(current.getScore());
 
+        myHolder.score.setText(String.format(Locale.ENGLISH,"%,.2f", Float.parseFloat(current.getScore())));
     }
 
     @Override
@@ -45,11 +49,13 @@ public class RankAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     }
 
     class MyHolder extends RecyclerView.ViewHolder{
-        TextView name, score;
+        TextView number,name, score;
         MyHolder(final View itemView) {
             super(itemView);
+            number = itemView.findViewById(R.id.rankNumber);
             name = itemView.findViewById(R.id.rankName);
             score = itemView.findViewById(R.id.rankScore);
+
         }
 
     }

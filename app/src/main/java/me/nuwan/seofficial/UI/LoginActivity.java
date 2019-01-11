@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,72 +18,95 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import me.nuwan.seofficial.Fireabse.FirebaseDB;
+import me.nuwan.seofficial.Model.Common;
 import me.nuwan.seofficial.Model.Login;
 import me.nuwan.seofficial.Model.User;
 import me.nuwan.seofficial.R;
 
 public class LoginActivity extends Activity {
 
-    private EditText txtUN,txtPW;
+    private EditText txtUN, txtPW;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         final DatabaseReference loginRef = FirebaseDB.getLoginReference();
 
-        setContentView(R.layout.activity_login);
-        txtPW = findViewById(R.id.splash_txtPassword);
-        txtUN = findViewById(R.id.splash_txtUserName);
-        final Button btnLogin = findViewById(R.id.splash_btnlogin);
+        txtPW = findViewById(R.id.logPassword);
+        txtUN = findViewById(R.id.logUsername);
+        final TextInputLayout textPWDInputLayout = findViewById(R.id.logPwdLayout);
+        final TextInputLayout textUNInputLayout = findViewById(R.id.logUnameLayout);
+        textPWDInputLayout.setPasswordVisibilityToggleEnabled(true);
+
+        final Button btnLogin = findViewById(R.id.logButoon);
+
+        txtPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textUNInputLayout.setError(null);
+                textPWDInputLayout.setError(null);
+            }
+        });
+
+        txtUN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textUNInputLayout.setError(null);
+                textPWDInputLayout.setError(null);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 final String inputUN = txtUN.getText().toString();
-                 final String inputPW = txtPW.getText().toString();
+                final String inputUN = txtUN.getText().toString();
+                final String inputPW = txtPW.getText().toString();
 
-                if(!(inputPW.isEmpty() || inputUN.isEmpty())){
+                if (!(inputPW.isEmpty() || inputUN.isEmpty())) {
                     loginRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.child(inputUN).exists()) {
+                            if (dataSnapshot.child(inputUN).exists()) {
                                 Login.currentToken = dataSnapshot.child(inputUN).getValue(Login.class);
-                                if (inputPW.equals(Login.currentToken.getPwd())) {
 
+                                if (inputPW.equals(Login.currentToken.getPwd())) {
                                     DatabaseReference userRef = FirebaseDB.getUserReference();
                                     userRef.addValueEventListener(new ValueEventListener() {
+
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             User.currentUser = dataSnapshot.child(inputUN).getValue(User.class);
-                                            showToast("user set : " + User.currentUser.getImg());
                                         }
 
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                                            Common.showToast(LoginActivity.this,"Please make sure your internet connection is working.");
                                         }
                                     });
                                     saveLogin(inputUN, inputPW);
                                     loginIn();
                                 } else {
-                                    showToast("Incorrect Password");
+                                    textPWDInputLayout.setError("Incorrect Password");
                                 }
-                            }else{
-                                showToast("Account not found! Please contact Admin.");
+
+                            } else {
+                                textUNInputLayout.setError("Account not found! Please contact Admin.");
                             }
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            showToast("Something went wrong in Server.");
+                            Common.showToast(LoginActivity.this,"Please make sure your internet connection is working.");
                         }
                     });
-                }else{
-                    showToast("Please fill the required fields.");
+                } else {
+                    Common.showToast(LoginActivity.this,"Please fill the required fields.");
                 }
-            }});
+            }
+        });
     }
 
     private void saveLogin(String inputUN, String inputPW) {
@@ -93,18 +117,14 @@ public class LoginActivity extends Activity {
         editor.apply();
     }
 
-    private void loginIn(){
-        showToast("Hello " + Login.currentToken.getName());
-        Intent i = new Intent(LoginActivity.this,MainActivity.class);
+    private void loginIn() {
+//        Common.showToast(this,"Login Successfully!");
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    void showToast(String msg){
-        Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_SHORT)
-                .show();
-    }
 
     @Override
     protected void onResume() {

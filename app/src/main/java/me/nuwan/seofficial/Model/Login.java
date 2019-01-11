@@ -1,24 +1,15 @@
 package me.nuwan.seofficial.Model;
 
 public class Login {
-    private String sno,name,pwd;
+    private String sno,pwd;
     public static Login currentToken;
 
     public Login() {
     }
 
-    public Login(String sno, String name, String pwd) {
+    public Login(String sno, String pwd) {
         this.sno = sno;
-        this.name = name;
         this.pwd = pwd;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPwd() {

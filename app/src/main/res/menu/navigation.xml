@@ -5,17 +5,21 @@
 
     <item
         android:id="@+id/navigation_feed"
-        android:icon="@mipmap/outline_rss_feed_white_48"
-        android:title="@string/feed" />
+        android:icon="@mipmap/feed"
+        android:title="Feed" />
 
     <item
         android:id="@+id/navigation_people"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/friends" />
+        android:icon="@mipmap/people"
+        android:title="People" />
 
     <item
         android:id="@+id/navigation_leaderboard"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/leaderboard" />
+        android:icon="@mipmap/list"
+        android:title="Boards" />
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@mipmap/university"
+        android:title="GPA" />
 
 </menu>

@@ -31,11 +31,10 @@ import me.nuwan.seofficial.R;
  */
 public class PeopleFragment extends Fragment {
 
-    RecyclerView rv;
-    public List<Person> data;
+    private RecyclerView rv;
+    private List<Person> data;
 
     public PeopleFragment() {
-        // Required empty public constructor
     }
 
 
@@ -51,9 +50,10 @@ public class PeopleFragment extends Fragment {
 
     @Override
     public void onStart() {
-        DatabaseReference feedRef = FirebaseDB.getUserReference();
+        DatabaseReference userRef = FirebaseDB.getUserReference();
+        userRef.keepSynced(true);
 
-        feedRef.addValueEventListener(new ValueEventListener() {
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 data.clear();
@@ -75,11 +75,14 @@ public class PeopleFragment extends Fragment {
             if(singleSnapshot.hasChildren()){
                 String name = singleSnapshot.child("name").getValue().toString();
                 String sno = singleSnapshot.child("sno").getValue().toString();
-                String mobile = singleSnapshot.child("mob").getValue().toString();
-                String image = singleSnapshot.child("img").getValue().toString();
+                String mob = singleSnapshot.child("mob").getValue().toString();
+                String img = singleSnapshot.child("img").getValue().toString();
                 String dob = singleSnapshot.child("dob").getValue().toString();
+                String lat = singleSnapshot.child("lat").getValue().toString();
+                String lang = singleSnapshot.child("lang").getValue().toString();
+                String gpa = singleSnapshot.child("gpa").getValue().toString();
 
-                Person person = new Person(sno,name,mobile,dob,image);
+                Person person = new Person(sno,name,mob,dob,img,lat,lang,gpa);
 
                 data.add(person);
             }

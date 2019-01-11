@@ -24,8 +24,6 @@ import me.nuwan.seofficial.UI.MainFragments.RankFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
     static int previousFragment = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -46,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_leaderboard:
                     selectedFragment = new RankFragment();
                     break;
-
-                    default:
-                        selectedFragment = new FeedFragment();
+                case R.id.navigation_notes:
+                    selectedFragment = new PeopleFragment();
+                    break;
+                default:
+                    selectedFragment = new FeedFragment();
             }
 
-            if(previousFragment == 0 || previousFragment!=item.getItemId()){
+            if (previousFragment == 0 || previousFragment != item.getItemId()) {
 
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -63,30 +63,21 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
-    private String message;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
-        for(int i = 0; i < menu.size(); i++){
-            Drawable drawable = menu.getItem(i).getIcon();
-            if(drawable != null) {
-                drawable.mutate();
-                drawable.setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
-            }
-        }
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
+
         switch (item.getItemId()) {
             case R.id.toolbar_settings:
-                Intent settings = new Intent(this,SettingsActivity.class);
+                Intent settings = new Intent(this, SettingsActivity.class);
                 startActivity(settings);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 return true;
 
             case R.id.toolbar_logout:
@@ -119,10 +110,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void makeToast(String m) {
-        Toast.makeText(getApplicationContext(), m,Toast.LENGTH_SHORT).show();
     }
 
     @Override

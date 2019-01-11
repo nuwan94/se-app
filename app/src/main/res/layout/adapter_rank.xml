@@ -22,13 +22,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/rankName"
-                    android:layout_width="200sp"
+                    android:id="@+id/rankNumber"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:padding="5dp"
+                    android:text="1"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/rankName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
                     android:padding="5sp"
                     android:text="Nuwan Sameera"
                     android:textColor="@color/colorPrimaryDark"
@@ -36,13 +46,15 @@
 
                 <TextView
                     android:id="@+id/rankScore"
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_weight="1"
                     android:padding="5sp"
                     android:text="1250"
-                    android:textColor="@color/colorAccent"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/belize_hole"
                     android:textSize="18sp" />
             </LinearLayout>
 

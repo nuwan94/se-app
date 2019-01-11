@@ -23,56 +23,62 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="220dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="0dp"
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:orientation="vertical"
         android:padding="10sp">
 
-        <EditText
-            android:id="@+id/splash_txtUserName"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/logUnameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:hint="Username"
-            android:inputType="number" />
+            android:baselineAligned="false"
+            app:errorEnabled="true">
 
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/logUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Username"
+                android:imeActionId="1"
+                android:imeOptions="actionNext"
+                android:inputType="number|numberDecimal" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/splash_txtPassword"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/logPwdLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:hint="Password"
-            android:inputType="numberPassword" />
+            android:baselineAligned="false"
+            app:errorEnabled="true">
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/splash_btnlogin"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/logPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Password"
+                android:imeActionId="2"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/logButoon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="21dp"
             android:layout_marginRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:imeActionId="3"
+            android:imeOptions="actionDone"
             android:text="Login"
-            android:textColor="@android:color/white"
-            app:cornerRadius="5dp"
-            app:fButtonColor="@color/cardview_dark_background"
-            app:shadowColor="@color/colorAccent"
-            app:shadowEnabled="true"
-            app:shadowHeight="4dp" />
-
-        <TextView
-            android:id="@+id/txtWelcomeFooter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="20dp"
-            android:text="@string/splash_footer_text"
-            android:textAlignment="center" />
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
