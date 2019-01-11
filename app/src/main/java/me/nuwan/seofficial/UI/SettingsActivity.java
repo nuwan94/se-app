@@ -60,8 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
         user = User.currentUser;
 
         CircleImageView selectImageButton = findViewById(R.id.settings_selectImage);
-        ImageView avatar = findViewById(R.id.avatar);
-//        avatar = findViewById(R.id.settings_avatar);
+        avatar = findViewById(R.id.settings_avatar);
 
         Picasso.get().load(user.getImg()).placeholder(R.color.silver).error(R.color.silver).into(avatar);
 

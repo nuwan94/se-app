@@ -21,35 +21,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/appbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="192dp">
-
-                    <android.support.design.widget.CollapsingToolbarLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:contentScrim="?attr/colorPrimary"
-                        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-                        app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">
-
-                        <ImageView
-                            android:id="@+id/avatar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@color/silver" />
-
-                    </android.support.design.widget.CollapsingToolbarLayout>
-                </android.support.design.widget.AppBarLayout>
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusable="auto"
                     android:focusableInTouchMode="true"
-                    android:layoutAnimation="@anim/layout_animation_fall_down"
-                    android:visibility="gone">
+                    android:layoutAnimation="@anim/layout_animation_fall_down">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/settings_avatar"
