@@ -7,14 +7,17 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="1dp"
+        android:clickable="true"
         android:elevation="0dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="1dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="false"
+            android:animationCache="false"
             android:background="@android:color/white"
             android:padding="5sp"
             android:paddingTop="10sp"
@@ -22,34 +25,19 @@
 
             <ImageView
                 android:id="@+id/peopleImage"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:layout_alignTop="@id/peopleSNO"
+                android:layout_width="75sp"
+                android:layout_height="75sp"
                 android:layout_alignParentStart="true"
                 android:layout_gravity="center"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@mipmap/open_book" />
 
-            <TextView
-                android:id="@+id/peopleSNO"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/peopleImage"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="SE/2015/003"
-                android:textAlignment="center"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="13sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/peopleSNO"
                 android:layout_toEndOf="@+id/peopleImage"
                 android:orientation="vertical"
                 android:padding="5dp"
@@ -59,28 +47,29 @@
                     android:id="@+id/peopleName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
+                    android:padding="2dp"
                     android:text="Nuwan Sameera Alawatta"
                     android:textAlignment="viewStart"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/peopleMobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="0757871494"
-                    android:textColor="#333"
-                    android:textSize="24sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/peopleMobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:padding="2dp"
+                        android:text="0757871494"
+                        android:textColor="#333"
+                        android:textSize="24sp" />
 
                     <ImageView
                         android:id="@+id/peopleCallBtn"
@@ -99,15 +88,6 @@
                         android:layout_weight="1"
                         android:padding="5dp"
                         app:srcCompat="@mipmap/message_color" />
-
-                    <ImageView
-                        android:id="@+id/peopleLocationBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="0dp"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        app:srcCompat="@mipmap/direction_color" />
 
                 </LinearLayout>
 

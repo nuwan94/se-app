@@ -7,26 +7,24 @@
     tools:context="me.nuwan.seofficial.UI.LoginActivity">
 
     <ImageView
-        android:id="@+id/splash_logo_top"
-        android:layout_width="155dp"
-        android:layout_height="146dp"
+        android:id="@+id/loginLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         android:src="@mipmap/se_logo" />
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/loginView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/loginLogo"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginBottom="0dp"
+        android:layout_margin="20dp"
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:orientation="vertical"
-        android:padding="10sp">
+        tools:layoutAnimation="null">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/logUnameLayout"
@@ -39,12 +37,11 @@
                 android:id="@+id/logUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:hint="Username"
                 android:imeActionId="1"
                 android:imeOptions="actionNext"
-                android:inputType="number|numberDecimal" />
+                android:inputType="number|numberDecimal"
+                android:textSize="14sp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -58,12 +55,11 @@
                 android:id="@+id/logPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:hint="Password"
                 android:imeActionId="2"
                 android:imeOptions="actionDone"
-                android:inputType="numberPassword" />
+                android:inputType="numberPassword"
+                android:textSize="14sp" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -71,12 +67,9 @@
             android:id="@+id/logButoon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="21dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:imeActionId="3"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionGo"
             android:text="Login"
             android:textColor="@android:color/white" />
 

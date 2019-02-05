@@ -11,6 +11,7 @@ import android.support.v4.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import me.nuwan.seofficial.UI.LoaderActivity;
 import me.nuwan.seofficial.UI.LoginActivity;
 import me.nuwan.seofficial.R;
 
@@ -19,15 +20,11 @@ public class FirebaseMsgService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        //Log data to Log Cat
-//        Log.d(TAG, "From: " + remoteMessage.getFrom());
-//        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
-        //create notification
         createNotification(remoteMessage.getNotification().getBody());
     }
 
     private void createNotification( String messageBody) {
-        Intent intent = new Intent( this , LoginActivity. class );
+        Intent intent = new Intent( this , LoaderActivity. class );
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent resultIntent = PendingIntent.getActivity( this , 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -48,4 +45,5 @@ public class FirebaseMsgService extends FirebaseMessagingService {
         if(notificationManager != null)
             notificationManager.notify(0, mNotificationBuilder.build());
     }
+
 }

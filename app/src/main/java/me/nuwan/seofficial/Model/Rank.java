@@ -15,6 +15,11 @@ public class Rank implements Comparable {
         this.score = score;
     }
 
+    public String getShortName() {
+        String[] nameArr = getName().split(" ");
+        return (nameArr.length > 1) ? nameArr[0] + " " + nameArr[1] : nameArr[0];
+    }
+
     public String getName() {
         return name;
     }
@@ -33,6 +38,6 @@ public class Rank implements Comparable {
 
     @Override
     public int compareTo(@NonNull Object o) {
-        return Integer.parseInt(this.score) - Integer.parseInt(((Rank)o).getScore());
+        return Integer.parseInt(this.score) - Integer.parseInt(((Rank) o).getScore());
     }
 }

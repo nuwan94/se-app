@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.Academic.ResultActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/resultToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="?attr/actionModeCloseDrawable"
+        app:title="Results"
+        app:titleTextColor="@color/colorPrimaryDark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ddd"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Cumulative GPA : "
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/resultGPA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            tools:text="3.85" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="auto"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            android:padding="15dp"
+            android:text="GPA Calculator is currentyl under construction. It will be available soon. Please use http://gpa.nuwan.pw web application to calculate your GPA."
+            android:textAlignment="textStart"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/resultGPAsitenotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/indigo"
+            android:padding="10dp"
+            android:text="(CLICK HERE TO GO TO THE WEB APP)"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/resultManulaGPA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Enter calculated GPA"
+            android:inputType="number|numberDecimal"
+            android:padding="20dp"
+            android:singleLine="true"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/resultGPAupdatBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Update"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

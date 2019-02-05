@@ -3,31 +3,46 @@
     <color name="colorPrimary">#333333</color>
     <color name="colorPrimaryDark">#111111</color>
     <color name="colorAccent">#ff4549</color>
-    <color name="colorBackground">#FFFFFF</color>
-    <color name="textColorPrimary">#777777</color>
+    <color name="textColorPrimary">#333</color>
 
     <!-- Material Colors -->
     <color name="alizarin">#e74c3c</color>
-    <color name="amethyst">#9b59b6</color>
-    <color name="asbestos">#7f8c8d</color>
     <color name="belize_hole">#2980b9</color>
-    <color name="carrot">#e67e22</color>
-    <color name="clouds">#ecf0f1</color>
-    <color name="concrete">#95a5a6</color>
     <color name="emerald">#2ecc71</color>
     <color name="green_sea">#16a085</color>
-    <color name="midnight_blue">#2c3e50</color>
-    <color name="nephritis">#27ae60</color>
-    <color name="orange">#f39c12</color>
-    <color name="peter_river">#3498db</color>
-    <color name="pomegranate">#c0392b</color>
-    <color name="pumpkin">#d35400</color>
     <color name="silver">#bdc3c7</color>
-    <color name="sun_flower">#f1c40f</color>
-    <color name="transparent">@android:color/transparent</color>
-    <color name="turquoise">#1abc9c</color>
-    <color name="wet_asphalt">#34495e</color>
-    <color name="wisteria">#8e44ad</color>
-    <color name="fb_default_color">#3eadeb</color>
-    <color name="fb_default_shadow_color">#ff3493c8</color>
+    <color name="white">#ffffff</color>
+
+    <color name="indigo">#3f51b5</color>
+    <color name="deepPurple">#673ab7</color>
+    <color name="teal">#009688</color>
+    <color name="green">#4caf50</color>
+    <color name="orange">#ff9800</color>
+    <color name="brown">#795548</color>
+    <color name="blueGrey">#607d8b</color>
+    <color name="red">#cc0000</color>
+    <color name="purple">#9c27b0</color>
+    <color name="pink">#e91e63</color>
+    <color name="darkGrey">#212121</color>
+    <color name="gold">#827717</color>
+    <color name="darkBlue">#1a237e</color>
+    <color name="deepOrange">#ff5722</color>
+
+    <string-array name="colors" translatable="false">
+        <item>@color/indigo</item>
+        <item>@color/deepPurple</item>
+        <item>@color/teal</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
+        <item>@color/brown</item>
+        <item>@color/blueGrey</item>
+        <item>@color/red</item>
+        <item>@color/purple</item>
+        <item>@color/pink</item>
+        <item>@color/darkGrey</item>
+        <item>@color/gold</item>
+        <item>@color/darkBlue</item>
+        <item>@color/deepOrange</item>
+    </string-array>
+
 </resources>

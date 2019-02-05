@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ttRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.Academic.TimetableAcivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/timeTableToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="?attr/actionModeCloseDrawable"
+        app:title="Timetable"
+        app:titleTextColor="@color/colorPrimaryDark" />
+
+    <LinearLayout
+        android:id="@+id/ttWeekLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeTableToolbar"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ttBtnMon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Mon"
+            android:textSize="12sp"
+            tools:background="@color/belize_hole" />
+
+        <Button
+            android:id="@+id/ttBtnTue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Tue"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ttBtnWed"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Wed"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ttBtnThu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Thu"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ttBtnFri"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Fri"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ttBtnSat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Sat"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ttBtnSun"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:text="Sun"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ttRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ttWeekLayout"
+        android:layout_marginTop="0dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/ttFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@android:color/white"
+        app:elevation="5dp"
+        app:fabSize="mini" />
+
+    <Button
+        android:id="@+id/ttOverlayRight"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ttWeekLayout"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:alpha=".0"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/ttOverlayLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/ttRecyclerView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:alpha="0"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

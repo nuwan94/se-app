@@ -3,9 +3,11 @@ package me.nuwan.seofficial.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,14 +18,11 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import me.nuwan.seofficial.Fireabse.FirebaseDB;
-import me.nuwan.seofficial.Model.Common;
 import me.nuwan.seofficial.Model.Feed;
 import me.nuwan.seofficial.Model.User;
 import me.nuwan.seofficial.R;
 import me.nuwan.seofficial.Widgets.PostDialog;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
@@ -31,10 +30,13 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<Feed> data;
+    private Context mContext;
+    private int lastPosition = -1;
 
     public FeedAdapter(Context context, List<Feed> data) {
         inflater = LayoutInflater.from(context);
         this.data = data;
+        this.mContext = context;
     }
 
     @Override
@@ -46,24 +48,23 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final MyHolder myHolder = (MyHolder) holder;
-        Feed current = data.get(position);
+        final Feed current = data.get(position);
 
-        final String title = current.getTitle();
+        String title = current.getTitle();
+        final String updatedTitle = title.startsWith("U-") ? title.split("-")[1] : title;
         final String author = current.getBy();
         final String description = current.getDesc();
         final int imageResId = current.getImage();
-        final String type = current.getType();
         final String time = current.getTime();
         final String uid = current.getUid().split(",")[0];
         final String pid = current.getUid().split(",")[1];
 
-        myHolder.feedTitle.setText(title);
+        myHolder.feedTitle.setText(updatedTitle);
         myHolder.feedAuthor.setText(author);
         myHolder.feedImage.setImageResource(imageResId);
         myHolder.feedTime.setText(
-                Common.dateTimeFormat.format(
-                        new Date(Long.parseLong(time)
-                        )
+                (title.startsWith("U-") ? "Updated " : "").concat(
+                        DateUtils.getRelativeTimeSpanString(Long.parseLong(time), System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString()
                 )
         );
 
@@ -79,7 +80,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             e.printStackTrace();
         }
 
-        if (!uid.equals(User.currentUser.getSno())) {
+        if (!(uid.equals(User.currentUser.getSno()) || ("admin").equals(User.currentUser.getType()))) {
             myHolder.feedPopUpBtn.setVisibility(View.GONE);
         }
 
@@ -94,7 +95,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         switch (item.getItemId()) {
 
                             case R.id.feedPostEdit:
-                                PostDialog dialog = new PostDialog(view.getContext(),PostDialog.EDIT_POST,pid,title,description,type);
+                                editPost(current);
                                 return true;
 
                             case R.id.feedPostDelete:
@@ -104,9 +105,10 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int whichButton) {
                                                 FirebaseDB.getFeedReference().child(pid).removeValue();
-                                            }})
+                                            }
+                                        })
                                         .setNegativeButton(android.R.string.no, null).show();
-
+                                notifyDataSetChanged();
                                 return true;
                             default:
                                 return false;
@@ -117,6 +119,17 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
+    }
+
+    private void editPost(Feed feed) {
+        Intent intent = new Intent(mContext, PostDialog.class);
+        intent.putExtra("title", (feed.getTitle().startsWith("U-") ? feed.getTitle().split("-")[1] : feed.getTitle()));
+        intent.putExtra("desc", feed.getDesc());
+        intent.putExtra("type", feed.getType());
+        intent.putExtra("uid", feed.getUid().split(",")[0]);
+        intent.putExtra("pid", feed.getUid().split(",")[1]);
+        intent.putExtra("author", feed.getBy());
+        mContext.startActivity(intent);
     }
 
     @Override

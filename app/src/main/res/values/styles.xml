@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -8,33 +8,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppThemeChild" parent="Theme.AppCompat.Light">
-        <item name="actionBarStyle">@style/MyActionBar</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="MyActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:titleTextStyle">@style/TitleBarTextColor</item>
-        <item name="android:background">#eee</item>
-    </style>
-
-    <style name="TitleBarTextColor" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
-
-    <style name="AppTheme.Button" parent="Base.Widget.AppCompat.Button">
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-        <item name="android:textColor">#fff</item>
-    </style>
-
     <style name="SplashTheme" parent="AppTheme">
         <!--<item name="android:windowBackground">@drawable/bg</item>-->
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

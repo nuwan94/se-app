@@ -8,50 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:990834855052:android:2db21703a5e1c6f3",
-        "android_client_info": {
-          "package_name": "me.nuwan.se15"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "990834855052-fbvangc81ctcdajt2b2a5b4qgma4nf5k.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "me.nuwan.se15",
-            "certificate_hash": "08d72a33cae322abd09f37949bbe1e054fa9d528"
-          }
-        },
-        {
-          "client_id": "990834855052-t3ia34ap16qrr757kp42ui1387svo352.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAwJcaPC_CokJnZ4Z-5aXMwtyZ23EuG2vY"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "990834855052-t3ia34ap16qrr757kp42ui1387svo352.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:990834855052:android:e2130e89264affdf",
         "android_client_info": {
           "package_name": "me.nuwan.seofficial"
@@ -59,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "990834855052-iht9srqgstutkrgk4r8p6sbmis598f5g.apps.googleusercontent.com",
+          "client_id": "990834855052-rvphaes08kj1anpgfo9kl1ob6aov5021.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "me.nuwan.seofficial",
@@ -67,13 +23,21 @@
           }
         },
         {
-          "client_id": "990834855052-t3ia34ap16qrr757kp42ui1387svo352.apps.googleusercontent.com",
+          "client_id": "990834855052-92khe4738frhtcdu22cpjmgvqdifijee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.nuwan.seofficial",
+            "certificate_hash": "5555ed8788794892da4a1bf99c2c9de6f3bfaf5a"
+          }
+        },
+        {
+          "client_id": "990834855052-na1qaqm0b44mg0cdkoulvjper56q6mrr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwJcaPC_CokJnZ4Z-5aXMwtyZ23EuG2vY"
+          "current_key": "AIzaSyDAqcJP3-D2OsStN1a19NtTHEMuazv6eaM"
         }
       ],
       "services": {
@@ -82,12 +46,7 @@
         },
         "appinvite_service": {
           "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "990834855052-t3ia34ap16qrr757kp42ui1387svo352.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

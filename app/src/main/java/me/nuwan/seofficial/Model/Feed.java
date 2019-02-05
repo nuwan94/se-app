@@ -3,6 +3,8 @@ package me.nuwan.seofficial.Model;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 import me.nuwan.seofficial.R;
 
 public class Feed {
@@ -12,7 +14,7 @@ public class Feed {
     public Feed() {
     }
 
-    public Feed(String title, String desc, String type, String by, String uid, String time) {
+    public Feed(String title, String desc, String type, String uid, String by, String time) {
         this.title = title;
         this.by = by;
         this.desc = desc;
@@ -68,11 +70,17 @@ public class Feed {
     public int getImage() {
         int i;
         switch (type) {
-            case "alert":
+            case "Alert":
                 i = R.mipmap.alarm;
                 break;
-            case "note":
+            case "Academic":
                 i = R.mipmap.open_book;
+                break;
+            case "SESA":
+                i = R.mipmap.se_logo;
+                break;
+            case "Meetup":
+                i = R.mipmap.meetup;
                 break;
             default:
                 i = R.mipmap.se_logo;

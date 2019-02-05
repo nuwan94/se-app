@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".UI.MainFragments.PeopleFragment">
+    tools:context=".UI.Main.PeopleFragment">
+
+    <LinearLayout
+        android:id="@+id/peopleSearchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="auto"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <SearchView
+            android:id="@+id/peopleSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusableInTouchMode="false"
+            android:iconifiedByDefault="false"
+            android:isScrollContainer="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:queryHint="Name">
+
+        </SearchView>
+
+        <!--<Spinner-->
+        <!--android:id="@+id/peopleSortBy"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:spinnerMode="dialog" />-->
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/peopleList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutAnimation="@anim/layout_animation_fall_down">
+        android:layout_below="@+id/peopleSearchLayout"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:alwaysDrawnWithCache="true">
 
     </android.support.v7.widget.RecyclerView>
 
 
-</LinearLayout>
+</RelativeLayout>

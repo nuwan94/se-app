@@ -1,48 +1,37 @@
-package me.nuwan.seofficial.UI.MainFragments;
+package me.nuwan.seofficial.UI.Main;
 
-import android.os.AsyncTask;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabItem;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import me.nuwan.seofficial.Adapters.PeopleAdapter;
 import me.nuwan.seofficial.Adapters.RankAdapter;
 import me.nuwan.seofficial.Fireabse.FirebaseDB;
-import me.nuwan.seofficial.Model.Person;
 import me.nuwan.seofficial.Model.Rank;
 import me.nuwan.seofficial.R;
-import me.nuwan.seofficial.UI.MainActivity;
 
 public class RankFragment extends Fragment {
 
     RecyclerView rv;
-    public List<Rank> data;
+    private List<Rank> data;
+    private TabLayout tabLayout;
+    private TabItem tabGpa, tabSo, tabHr, tabSl;
 
     public RankFragment() {
 
@@ -52,12 +41,32 @@ public class RankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rank, container, false);
-
         rv = v.findViewById(R.id.gpaList);
+
+        tabLayout = v.findViewById(R.id.rankTabLayout);
+        tabGpa = v.findViewById(R.id.rankTabGPA);
+        tabHr = v.findViewById(R.id.rankTabHR);
+        tabSo = v.findViewById(R.id.rankTabSO);
+        tabSl = v.findViewById(R.id.rankTabSL);
+
         data = new ArrayList<>();
+        buildViews();
 
         return v;
     }
+
+
+    private void buildViews() {
+        for(View v : tabLayout.getTouchables()){
+            if(v.getId() != R.id.rankTabGPA )
+                v.setClickable(false);
+        }
+//        tabHr.setEnabled(false);
+//        tabSo.setEnabled(false);
+//        tabSl.setEnabled(false);
+    }
+
+
 
     @Override
     public void onStart() {

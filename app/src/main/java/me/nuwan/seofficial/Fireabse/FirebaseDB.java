@@ -9,7 +9,7 @@ public class FirebaseDB {
     private static DatabaseReference loginDatabaseReference;
     private static DatabaseReference userDatabaseReference;
     private static DatabaseReference feedDatabaseReference;
-
+    private static DatabaseReference timeTableDatabaseReference;
 
     public static FirebaseDatabase getDatabase() {
         if (mDatabase == null) {
@@ -38,5 +38,12 @@ public class FirebaseDB {
             feedDatabaseReference = getDatabase().getReference("feed");
         }
         return feedDatabaseReference;
+    }
+
+    public static DatabaseReference getTimeTableReference(){
+        if(timeTableDatabaseReference == null){
+            timeTableDatabaseReference = getDatabase().getReference("timetable");
+        }
+        return timeTableDatabaseReference;
     }
 }

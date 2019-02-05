@@ -1,15 +1,12 @@
 package me.nuwan.seofficial.Widgets;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.media.Image;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,106 +14,122 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
 import me.nuwan.seofficial.Fireabse.FirebaseDB;
+import me.nuwan.seofficial.Model.Common;
 import me.nuwan.seofficial.Model.Feed;
 import me.nuwan.seofficial.Model.User;
 import me.nuwan.seofficial.R;
 
-public class PostDialog extends Dialog {
+public class PostDialog extends AppCompatActivity {
 
     public static int EDIT_POST = 1;
     public static int NEW_POST = 0;
 
-    private Context context;
-    private String title;
-    private String desc;
-    private String type;
+    String title, desc, type, pid, uid, author;
 
-    public PostDialog(Context context, int action) {
-        super(context);
-        this.title = "";
-        this.desc = "";
-        this.type = "";
-        this.context = context;
-        Build(action, "");
+    private TextView dialogTitle;
+    private EditText titleBox, descriptionBox;
+    private Spinner spinnrType;
+    private Button okButton;
+    private ImageView boldButton, underlineButton, linkButton;
+    private LinearLayout editor;
+
+    ArrayAdapter<String> adapter;
+
+    public PostDialog() {
     }
 
-    public PostDialog(Context context, int action, String pid, String title, String desc, String type) {
-        super(context);
-        this.title = title;
-        this.desc = desc;
-        this.type = type;
-        this.context = context;
-        Build(action, pid);
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_post);
+        setViews();
+        loadExtras();
+        BuildView((this.title.equals("")) ? PostDialog.NEW_POST : PostDialog.EDIT_POST, pid, uid, author);
     }
 
-    private void Build(final int action, final String pid) {
+    private void loadExtras() {
+        Intent intent = getIntent();
+        this.title = intent.getStringExtra("title");
+        this.desc = intent.getStringExtra("desc");
+        this.type = intent.getStringExtra("type");
+        this.pid = intent.getStringExtra("pid");
+        this.uid = intent.getStringExtra("uid");
+        this.author = intent.getStringExtra("author");
+    }
 
-        this.setContentView(R.layout.dialog_post);
+    private void setViews() {
+        Toolbar toolbar = findViewById(R.id.dialogPostToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        TextView dialogTitle = findViewById(R.id.dialogTextViewTitle);
-        final EditText titleBox = findViewById(R.id.dialogEditTitle);
-        final Spinner sp = findViewById(R.id.dialogSpinnerType);
-        final EditText descriptionBox = findViewById(R.id.dialogEditDescription);
+        titleBox = findViewById(R.id.dialogEditTitle);
+        spinnrType = findViewById(R.id.dialogSpinnerType);
+        descriptionBox = findViewById(R.id.dialogEditDescription);
 
-        Button okButton = findViewById(R.id.dialogPositiveButton);
-        Button cancelButton = findViewById(R.id.dialogNegativeButton);
+        okButton = findViewById(R.id.dialogPositiveButton);
 
-        ImageView boldButton = findViewById(R.id.dialogBtnBold);
-        ImageView underlineButton = findViewById(R.id.dialogBtnUnderline);
-        ImageView linkButton = findViewById(R.id.dialogBtnLink);
+        boldButton = findViewById(R.id.dialogBtnBold);
+        underlineButton = findViewById(R.id.dialogBtnUnderline);
+        linkButton = findViewById(R.id.dialogBtnLink);
 
+        editor = findViewById(R.id.dialogEditorPanel);
 
-        String[] types = {"Alert", "Note", "SESA", "Other"};
-        final ArrayAdapter<String> adp = new ArrayAdapter<String>(context,
-                android.R.layout.simple_spinner_dropdown_item, types);
-        sp.setAdapter(adp);
+        String[] types = {"Alert", "Academic", "Meetup", "SE"};
+        adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, types);
+        spinnrType.setAdapter(adapter);
 
-        dialogTitle.setText((action == 0) ? "Create Post" : "Edit Post");
-        titleBox.setText(this.title);
-        descriptionBox.setText(this.desc);
-        sp.setSelection(adp.getPosition(this.type),true);
+    }
+
+    private void BuildView(final int action, final String pid, final String uid, final String author) {
+        getSupportActionBar().setTitle((action == 0) ? "Create Post" : "Edit Post");
+
+        titleBox.setHint((action == 0) ? "Create Post" : "Edit Post");
+        titleBox.setText(title);
+
+        String updatedDesc = desc.replaceAll("(?i)<br */?>", "\n");
+        updatedDesc = updatedDesc.replaceAll("<b>(.+?)</b>", "*$1*");
+        updatedDesc = updatedDesc.replaceAll("<u>(.+?)</u>", "_$1_");
+        descriptionBox.setText(updatedDesc);
+
+        spinnrType.setSelection(adapter.getPosition(type));
         okButton.setText((action == 0) ? "Post" : "Update");
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String title = titleBox.getText().toString();
 
+                String title = titleBox.getText().toString();
                 String desc = descriptionBox.getText().toString();
                 String htmlDesc = desc.replaceAll("\\*(.+?)\\*", "<b>$1</b>");
                 htmlDesc = htmlDesc.replaceAll("\\_(.+?)\\_", "<u>$1</u>");
                 htmlDesc = htmlDesc.replaceAll("\\[(.+?)\\]\\((.+?)\\)", "<a href='$2'>$1</a>");
+                htmlDesc = htmlDesc.replaceAll("(\n)", "<br>");
 
                 if (!(title.isEmpty() || desc.isEmpty())) {
                     DatabaseReference databaseReference = (action == 0) ? FirebaseDB.getFeedReference().push() : FirebaseDB.getFeedReference().child(pid);
                     databaseReference.setValue(
-                            new Feed(title,
+                            new Feed(
+                                    (action == 0) ? title : "U-" + title,
                                     htmlDesc,
-                                    sp.getSelectedItem().toString().toLowerCase(),
-                                    User.currentUser.getName(),
-                                    User.currentUser.getSno(),
+                                    spinnrType.getSelectedItem().toString(),
+                                    uid,
+                                    author,
                                     String.valueOf(System.currentTimeMillis())
                             )
                     );
-                    dismiss();
+                    finish();
                 } else {
-                    Toast.makeText(getContext(), "Please fill required fields", Toast.LENGTH_SHORT).show();
+                    Common.showToast(view.getContext(), "Please enter post details");
                 }
 
             }
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
 
         boldButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,20 +151,42 @@ public class PostDialog extends Dialog {
             }
         });
 
-//        linkButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                descriptionBox.append(" [text](link) ");
+        linkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                descriptionBox.append(" [text](link) ");
 //                descriptionBox.setSelection(descriptionBox.getText().length() - 1);
 //                descriptionBox.requestFocus();
-//            }
-//        });
+            }
+        });
 
+        descriptionBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    editor.setVisibility(View.VISIBLE);
+                } else {
+                    editor.setVisibility(View.GONE);
+                }
+            }
+        });
 
-        this.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-        this.getWindow().setGravity(Gravity.CENTER);
-        this.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            return true;
+        }
+        return false;
+    }
 
 }

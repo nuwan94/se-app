@@ -9,7 +9,7 @@ import android.view.View;
 
 public class MovableFAB extends FloatingActionButton implements View.OnTouchListener {
 
-    private static float CLICK_DRAG_TOLERANCE = 10;
+    private static float CLICK_DRAG_TOLERANCE = 25;
     private int margin = 10;
 
     private float downRawX, downRawY;
@@ -53,10 +53,11 @@ public class MovableFAB extends FloatingActionButton implements View.OnTouchList
             dX = view.getX() - downRawX;
             dY = view.getY() - downRawY;
 
+            view.setAlpha(1);
+
             return true;
 
         } else if (action == MotionEvent.ACTION_MOVE) {
-
 
             newX = motionEvent.getRawX() + dX;
             newX = Math.max(margin, newX);
@@ -82,23 +83,27 @@ public class MovableFAB extends FloatingActionButton implements View.OnTouchList
             float upDX = upRawX - downRawX;
             float upDY = upRawY - downRawY;
 
+
+
             if (newX * 2 > parentWidth) {
                 newX = parentWidth - viewHeight - margin;
             } else {
-                newX = 5;
+                newX = margin;
             }
 
-            view.animate()
-                    .x(newX)
-                    .y(newY)
-                    .setDuration(50)
-                    .start();
+            view.animate().alpha(0.25F).setDuration(100).start();
 
             if (Math.abs(upDX) < CLICK_DRAG_TOLERANCE && Math.abs(upDY) < CLICK_DRAG_TOLERANCE) {
                 return performClick();
             } else {
+                view.animate()
+                        .x(newX)
+                        .y(newY)
+                        .setDuration(50)
+                        .start();
                 return true;
             }
+
 
 
         } else {

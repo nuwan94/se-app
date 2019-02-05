@@ -1,9 +1,7 @@
-package me.nuwan.seofficial.UI;
+package me.nuwan.seofficial.UI.Main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,19 +10,42 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MotionEvent;
 
 import me.nuwan.seofficial.R;
-import me.nuwan.seofficial.UI.MainFragments.FeedFragment;
-import me.nuwan.seofficial.UI.MainFragments.PeopleFragment;
-import me.nuwan.seofficial.UI.MainFragments.RankFragment;
+import me.nuwan.seofficial.UI.Settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     static int previousFragment = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        try {
+            transaction.replace(R.id.content, FeedFragment.class.newInstance());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        transaction.commit();
+    }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_leaderboard:
                     selectedFragment = new RankFragment();
                     break;
-                case R.id.navigation_notes:
-                    selectedFragment = new PeopleFragment();
+                case R.id.navigation_academic:
+                    selectedFragment = new AcademicFragment();
                     break;
                 default:
                     selectedFragment = new FeedFragment();
@@ -54,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             if (previousFragment == 0 || previousFragment != item.getItemId()) {
 
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
                 transaction.replace(R.id.content, selectedFragment);
                 transaction.commit();
             }
@@ -110,28 +131,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        try {
-            transaction.replace(R.id.content, FeedFragment.class.newInstance());
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        transaction.commit();
     }
 
 }

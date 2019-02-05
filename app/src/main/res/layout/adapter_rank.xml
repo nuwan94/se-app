@@ -8,7 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:elevation="0dp">
+        android:clickable="true"
+        android:elevation="0dp"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
             android:layout_width="match_parent"

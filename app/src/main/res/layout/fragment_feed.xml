@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.MainFragments.FeedFragment">
+    tools:context=".UI.Main.FeedFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/feedList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layoutAnimation="@anim/layout_animation_fall_down"
-        />
+        android:layout_height="match_parent" />
 
     <me.nuwan.seofficial.Widgets.MovableFAB
         android:id="@+id/feedAddPostBtn"
@@ -18,11 +16,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:alpha=".25"
         android:clickable="true"
+        android:focusable="true"
         android:src="@mipmap/edit_white"
-        app:backgroundTint="@color/colorPrimary"
-        android:focusable="true" />
+        app:backgroundTint="@color/colorPrimary" />
 
 </RelativeLayout>

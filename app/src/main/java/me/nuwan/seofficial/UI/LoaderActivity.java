@@ -19,6 +19,7 @@ import me.nuwan.seofficial.Model.Common;
 import me.nuwan.seofficial.Model.Login;
 import me.nuwan.seofficial.Model.User;
 import me.nuwan.seofficial.R;
+import me.nuwan.seofficial.UI.Main.MainActivity;
 
 public class LoaderActivity extends Activity {
     private String unSaved, pwSaved;
@@ -32,7 +33,7 @@ public class LoaderActivity extends Activity {
         final DatabaseReference loginRef = FirebaseDB.getDatabase()
                 .getReference("login");
 
-        checkSavedLogin();
+        checkSavedData();
 
         logo = findViewById(R.id.loader_logo);
         Animation fadeandZoom = AnimationUtils.loadAnimation(this, R.anim.zoom_in_out);
@@ -61,7 +62,7 @@ public class LoaderActivity extends Activity {
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Common.showToast(LoaderActivity.this,"Please make sure your internet connection is working.");
+                                        Common.showToast(LoaderActivity.this, "Please make sure your internet connection is working.");
                                     }
                                 });
                                 loginIn(MainActivity.class);
@@ -94,16 +95,20 @@ public class LoaderActivity extends Activity {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
     }
 
 
-    private void checkSavedLogin() {
+    private void checkSavedData() {
         SharedPreferences prefs = getSharedPreferences("LoginPreferences", MODE_PRIVATE);
         String restoreCheck = prefs.getString("un", null);
         if (restoreCheck != null) {
             unSaved = prefs.getString("un", "undefined");
             pwSaved = prefs.getString("pw", "undefined");
         }
+
+        SharedPreferences sort = getSharedPreferences("sortTypes", MODE_PRIVATE);
+        Common.sortPeopleType = sort.getString("peopleSort", "Name");
     }
 
 }

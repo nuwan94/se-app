@@ -7,23 +7,28 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <activity android:name=".UI.Academic.AddTimeTableActivity"
+            android:parentActivityName=".UI.Academic.TimetableAcivity"
+            />
         <activity
-            android:name=".UI.LoaderActivity"
-            android:theme="@style/SplashTheme">
+            android:name=".UI.Settings.SelectLocationActivity"
+            android:parentActivityName=".UI.Settings.SettingsActivity" />
+        <activity
+            android:name=".UI.People.ProfileActivity"
+            android:parentActivityName=".UI.Main.MainActivity" />
+        <activity android:name=".UI.LoaderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.MainActivity"
+            android:name=".UI.Main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -44,6 +49,19 @@
             </intent-filter>
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity
+            android:name=".UI.Academic.TimetableAcivity"
+            android:parentActivityName=".UI.Main.MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.Academic.ResultActivity"
+            android:parentActivityName=".UI.Main.MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.Settings.SettingsActivity"
+            android:parentActivityName=".UI.Main.MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Widgets.PostDialog" />
 
         <service
             android:name=".Fireabse.FirebaseMsgService"
@@ -53,15 +71,12 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".UI.SettingsActivity"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/AppThemeChild" />
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
     </application>
 
 </manifest>

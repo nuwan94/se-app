@@ -6,25 +6,43 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/rankTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabBackground="@android:color/white">
 
             <android.support.design.widget.TabItem
+                android:id="@+id/rankTabGPA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GPA" />
 
             <android.support.design.widget.TabItem
+                android:id="@+id/rankTabSO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="StackOverflow" />
+                android:clickable="false"
+                android:icon="@mipmap/ic_stackoverflow" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/rankTabHR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:clickable="false"
+                android:icon="@mipmap/hackerankicon" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/rankTabSL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:clickable="false"
+                android:icon="@mipmap/ic_sololearn" />
 
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
@@ -38,13 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".UI.MainFragments.RankFragment">
+            tools:context=".UI.Main.RankFragment">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/gpaList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layoutAnimation="@anim/layout_animation_fall_down" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

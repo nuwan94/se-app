@@ -9,12 +9,10 @@ import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import me.nuwan.seofficial.Fireabse.FirebaseDB;
@@ -22,6 +20,7 @@ import me.nuwan.seofficial.Model.Common;
 import me.nuwan.seofficial.Model.Login;
 import me.nuwan.seofficial.Model.User;
 import me.nuwan.seofficial.R;
+import me.nuwan.seofficial.UI.Main.MainActivity;
 
 public class LoginActivity extends Activity {
 
@@ -103,7 +102,9 @@ public class LoginActivity extends Activity {
                         }
                     });
                 } else {
-                    Common.showToast(LoginActivity.this,"Please fill the required fields.");
+                    textUNInputLayout.setError("* Required.");
+                    textPWDInputLayout.setError("* Required.");
+//                    Common.showToast(LoginActivity.this,"Please fill the required fields.");
                 }
             }
         });

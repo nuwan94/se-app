@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.Academic.AddTimeTableActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/addTimeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="?attr/actionModeCloseDrawable"
+        app:title="Add Subject"
+        app:titleTextColor="@color/colorPrimaryDark" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/addTimeCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Course Code"
+                android:inputType="textPersonName"
+                android:padding="20dp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/addTimeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Course Name"
+                android:inputType="textPersonName"
+                android:padding="20dp" />
+
+
+            <AutoCompleteTextView
+                android:id="@+id/addTimeLec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Lecturer Name"
+                android:inputType="textPersonName"
+                android:padding="20dp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/addTimeHall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Lecture Hall"
+                android:inputType="textPersonName"
+                android:padding="20dp" />
+
+            <RadioGroup
+                android:id="@+id/addTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checkedButton="@+id/radioButton"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="M" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="T" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="W" />
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="T" />
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="F" />
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="S" />
+
+                <RadioButton
+                    android:id="@+id/radioButton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="S" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/addTimeStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Start Time"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:padding="20dp"
+                    android:singleLine="true"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:id="@+id/addTimeEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="End Time"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:padding="20dp"
+                    android:singleLine="true"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Add Subject"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

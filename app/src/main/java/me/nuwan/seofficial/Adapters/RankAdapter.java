@@ -38,8 +38,7 @@ public class RankAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         Rank current = data.get(position);
 
         myHolder.number.setText(String.format(Locale.ENGLISH,"%d", position + 1));
-        myHolder.name.setText(current.getName());
-
+        myHolder.name.setText(current.getShortName());
         myHolder.score.setText(String.format(Locale.ENGLISH,"%,.2f", Float.parseFloat(current.getScore())));
     }
 

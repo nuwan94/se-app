@@ -1,8 +1,8 @@
-package me.nuwan.seofficial.UI.MainFragments;
+package me.nuwan.seofficial.UI.Main;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +22,7 @@ import java.util.List;
 import me.nuwan.seofficial.Adapters.FeedAdapter;
 import me.nuwan.seofficial.Model.Feed;
 import me.nuwan.seofficial.Fireabse.FirebaseDB;
+import me.nuwan.seofficial.Model.User;
 import me.nuwan.seofficial.R;
 import me.nuwan.seofficial.Widgets.MovableFAB;
 import me.nuwan.seofficial.Widgets.PostDialog;
@@ -49,22 +50,32 @@ public class FeedFragment extends Fragment {
         feedRef.keepSynced(true);
 
         MovableFAB addPostBtn = v.findViewById(R.id.feedAddPostBtn);
+        addPostBtn.setMargin(10);
 
         addPostBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-                PostDialog dialog = new PostDialog(view.getContext(),PostDialog.NEW_POST);
+                Intent intent = new Intent(getContext(), PostDialog.class);
+                intent.putExtra("title", "");
+                intent.putExtra("desc", "");
+                intent.putExtra("type", "Alert");
+                intent.putExtra("uid", User.currentUser.getSno());
+                intent.putExtra("pid", "");
+                intent.putExtra("author", User.currentUser.getName());
+                startActivity(intent);
             }
         });
-
-        addPostBtn.setMargin(20);
 
         return v;
     }
 
     @Override
     public void onStart() {
+        LoadData();
+        super.onStart();
+    }
+
+    private void LoadData() {
 
         feedRef.orderByChild("time").addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,8 +93,6 @@ public class FeedFragment extends Fragment {
 
             }
         });
-
-        super.onStart();
     }
 
     private void fetchFeed(DataSnapshot dataSnapshot) {
@@ -94,10 +103,10 @@ public class FeedFragment extends Fragment {
                 String title = singleSnapshot.child("title").getValue().toString();
                 String desc = singleSnapshot.child("desc").getValue().toString();
                 String type = singleSnapshot.child("type").getValue().toString();
-                String by = singleSnapshot.child("by").getValue().toString();
                 String uid = singleSnapshot.child("uid").getValue().toString() + "," + singleSnapshot.getKey();
+                String by = singleSnapshot.child("by").getValue().toString();
                 String time = singleSnapshot.child("time").getValue().toString();
-                Feed feed = new Feed(title, desc, type, by, uid, time);
+                Feed feed = new Feed(title, desc, type, uid, by, time);
                 data.add(feed);
             }
         }
@@ -109,4 +118,5 @@ public class FeedFragment extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     }
+
 }

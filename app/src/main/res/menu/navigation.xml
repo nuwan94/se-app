@@ -18,8 +18,8 @@
         android:icon="@mipmap/list"
         android:title="Boards" />
     <item
-        android:id="@+id/navigation_notes"
+        android:id="@+id/navigation_academic"
         android:icon="@mipmap/university"
-        android:title="GPA" />
+        android:title="Academic" />
 
 </menu>
